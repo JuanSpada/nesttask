@@ -11,16 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-
-
+/* Rutas cuando estas logeado */
 Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/task', 'TaskController@listado');
+    Route::get('/task', 'TaskController@task');
     Route::post('task', 'TaskController@createTask');
+    Route::get('/', 'TaskController@listado');
+    Route::get('/home', 'TaskController@listado');
 });
-Route::get('/home', 'HomeController@index')->name('home');
 

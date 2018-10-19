@@ -10,7 +10,11 @@ class TaskController extends Controller
 
     public function listado() {
         $tasks = Task::all();
-        return view('task')->with('task', $tasks);
+        return view('home')->with('task', $tasks);
+    }
+
+    public function task() {
+        return view('task');
     }
 
     public function createTask(Request $request) {
@@ -26,6 +30,6 @@ class TaskController extends Controller
             'empresa' => $request->input('empresa'),
             'user_id' => '1'
         ]);
-        return redirect('/task');
+        return redirect('/home');
     }
 }
